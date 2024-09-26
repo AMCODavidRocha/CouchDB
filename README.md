@@ -9,12 +9,15 @@
 Research how to install CouchDB locally on your system (Windows, macOS, or Linux).
 * Install CouchDB using the official instructions: CouchDB Installation.
 * **Task:**
-    * Install CouchDB on your local machine.
+    * Install CouchDB on your local machine.                       
         ![pic](src/img/1-1.png)
     * Verify the installation by accessing the Futon interface,
     usually available at <http://127.0.0.1:5984/_utils/>
         ![pic](src/img/1-2.png)
 
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
 ***1.1 Load a Database from a Dump File***
 * Research how to load a CouchDB database from a dump file.
 
@@ -42,3 +45,16 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
         > `~SELECT * FROM actor WHERE first_name = 'SISSY';`
 
         ![pic](src/img/1-1-5.png)
+
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
+***Section 2: CouchDB Operations Using Futon Interface***
+* Research and explore the Futon web interface provided by CouchDB.
+* Learn how to:
+    * Create and manage databases using Futon.
+    * Insert, update, and delete documents through the graphical interface.
+    * View logs, CouchDB system information, and design documents.
+
+**Task:**
+* Write a brief summary of how to navigate Futon and perform basic operations such as creating databases, adding documents, and updating them
