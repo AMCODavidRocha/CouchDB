@@ -53,8 +53,37 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 * Research and explore the Futon web interface provided by CouchDB.
 * Learn how to:
     * Create and manage databases using Futon.
-    * Insert, update, and delete documents through the graphical interface.
+    ![pic](src/img/2-1.png)
+    ![pic](src/img/2-2.png)
+    * Insert, update, and delete documents through the graphical interface:
+        - Insert
+    ![pic](src/img/2-3.png)
+    ![pic](src/img/2-4.png)
+        - Update and Delete
+    ![pic](src/img/2-5.png)
     * View logs, CouchDB system information, and design documents.
+        - Logs names at the left menu and the design of documents are like an add a register on a table.
+    ![pic](src/img/2-6.png)
+
 
 **Task:**
 * Write a brief summary of how to navigate Futon and perform basic operations such as creating databases, adding documents, and updating them
+
+        
+    >- CouchDB Fauxton view are very simple and let us create, update or delete DB and Documents, in the log of databases are all the tools we gonna need, like a 
+    >- Create DB:
+    >   - `Databases-->CreateDatabase`
+    >- Create Document:
+    >   - `Databases-->"Database"-->CreateDocument`
+    >- Delete one or the other
+    >   - `Databases-->DeleteDatabase`
+    >   - `Databases-->"Document"-->DeleteDoc`
+    >- Update a Documents we just need select it and modify directly at the json format.
+    >   - `Databases-->"Document"-->SaveChanges` 
+    >- Contorl verions are in the BD and Changes menu.
+    >   - `Databases-->"Database"-->Changes`
+
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
+
