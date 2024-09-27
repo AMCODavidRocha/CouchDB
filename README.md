@@ -87,3 +87,85 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 | :---        |               ---: |
 ---
 
+***Section 3: CouchDB Operations Using curl***
+* Research how to interact with CouchDB using the curl command-line tool.
+
+* Learn how to:
+
+    * Send HTTP requests to CouchDB using curl.  
+        * Request all db in CouchDB:
+        `~curl -X GET user:password@localhost:5984/_all_dbs` 
+    * Perform database operations like creating, reading, and updating documents. 
+        * Create a DB in CouchDB named personas:
+        `curl -X PUT user:password@localhost:5984/personas`
+        * Delete a DB in CouchDB named personas:
+        `curl -X DELETE user:password@localhost:5984/personas`
+
+        * Create a Document in the DB con un _id creado por nosotros (8992):
+        `curl -X PUT user:password@127.0.0.1:5984/personas/8992 -H "Content-Type: application/json" -d '{"nombre":"David","edad":35}'`
+        * Create a document with a default CouchDB assignment (without 8992):
+        `curl -X POST user:password@127.0.0.1:5984/personas -H "Content-Type: application/json" -d '{"nombre":"Dahra", "apellido": "Rocha", "edad":7, "color":"Rosa}'`
+        * Modified a document, for this we need to know the actually _rev and pass the complete params of the document, those gonna be updated and the rest of datas:
+        `curl -X PUT user:password@127.0.0.1:5984/personas/"a5a7ea3029f5eee145378f63bd7d758d" -H "Content-Type: application/json" -d '{"_rev":"2-87c6a8f9a1a3f3b4c1bf85e57d296ee8", "nombre":"Makis Makikis", "apellido": "Rocha", "edad": 2, "color":"Gris"}'`
+        * To delete a document also we need to know the actually _rev and send in the url:
+        `curl -X DELETE user:password@127.0.0.1:5984/personas/"a5a7ea3029f5eee145378f63bd7e5a41?rev=1-0c1f84d414a19290490f75dc5bd2b53b"`
+        **Extras:**
+        * If we know the id of the document we can request the info of the documento to obtain de _rev:
+        `curl -X GET user:password@127.0.0.1:5984/personas/a5a7ea3029f5eee145378f63bd7d51e9`
+        * Also if we dont know both _id and _rev we can request a list of all documents:
+        `curl -X GET user:password@127.0.0.1:5984/personas/"_all_docs?include_docs=true"`
+
+***3.1. Mango Queries via curl***
+* Mango queries provide a declarative way to query CouchDB using JSON syntax.
+* Perform the following operations using curl: 
+    * Filter documents based on specific fields. 
+    `curl -H 'Content-Type: application/json' -X POST admin:root8992@127.0.0.1:5984/personas/_find -d '{"selector":{"nombre":"Dahra"}}'`
+    * Perform pagination using limit and skip. (limit are a maxim numbers of documents, skip will remove a number of the total of documents): 
+    `curl -H 'Content-Type: application/json' -X POST admin:root8992@127.0.0.1:5984/personas/_find -d '{"selector": {"apellido": "Rocha"},"fields": ["nombre","apellido"],"limit": 100,"skip": 0}'`
+
+**Task:** 
+* Execute at least 3 different Mango queries using curl and document the process.
+
+    * the fields where selector is the condition and fields are the results:    
+
+    `curl -H 'Content-Type: application/json' -X POST user:password@127.0.0.1:5984/personas/_find -d '{"selector": {"apellido": "Rocha"},"fields": ["nombre","edad"]}'`
+
+    * Select the nombre field when the condition edad was 35 or 2:
+    `curl -H 'Content-Type: application/json' -X POST user:password@127.0.0.1:5984/personas/_find -d '{"selector": {"edad": {"$or": [35,2]}},"fields": ["nombre"]}'`
+
+    * Now, we select the documents where edad are higher than 5 and apellido are equals to Rocha
+    `curl -H 'Content-Type: application/json' -X POST user:password@127.0.0.1:5984/personas/_find -d '{"selector": {"edad": {"$gt": 5},"apellido": "Rocha"}}'`
+
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
+
+***3.2. Temporal View Request via curl***
+:warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning::warning:
+>**Temporal Views are not suported:** 
+>{"error":"gone","reason":"Temporary views are not supported in CouchDB"}
+
+* Temporal view requests allow you to retrieve documents ordered by a timestamp or other temporal field.
+* Perform the following using curl:
+    * Create and define a temporal view.
+    * Retrieve documents sorted by a specific time-based field.
+
+**Task:**
+* Set up and query a temporal view using curl and document the steps and results.
+
+===
+* :warning: Due to this incompatibility, we create and manage views with de CouchDB Fauxton interface, and call it via CURL
+
+    - To create a new view we fallow the next steps:
+        - In the design new document, we click en the plus button and choose new view.
+        - In the new view page, in the _design input we put the name of the group for the views.
+        - in the index name, we put the name of the view. (one design can contain multiple views)
+        - In map function we put the code, example:
+        `function (doc) {`
+        `  emit(doc._id, [doc.nombre, doc.apellido]);`
+        `}`
+        Where emit() will response with all the docs id and a list of two values.
+         ![pic](src/img/3-2-1.png)
+        - Finally with CURL we make de call by this form:
+        `curl user:password@127.0.0.1:5984/personas/_design/datosPersona/_view/nombre-completo`
+        ![pic](src/img/3-2-2.png)
