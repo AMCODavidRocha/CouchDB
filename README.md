@@ -153,7 +153,6 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 **Task:**
 * Set up and query a temporal view using curl and document the steps and results.
 
-===
 * :warning: Due to this incompatibility, we create and manage views with de CouchDB Fauxton interface, and call it via CURL
 
     - To create a new view we fallow the next steps:
@@ -169,3 +168,72 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
         - Finally with CURL we make de call by this form:
         `curl user:password@127.0.0.1:5984/personas/_design/datosPersona/_view/nombre-completo`
         ![pic](src/img/3-2-2.png)
+
+    - To get a list of documents sorted by any value, first we need to create a index of that values, this action we will create in the Fauxton view, just by clicling
+        ![pic](src/img/3-2-3.png)
+    Then, just need to modify the value that we want in the index, in this example we put "edad" and "edad-index" to the name of the index:
+        ![pic](src/img/3-2-4.png)
+    Finally, we can use a mango query to select the condition and values that we want, and adding the sort parameter indicate that with that vale we want the sort, asc by defautl or desc.
+    `curl -H 'Content-Type: application/json' -X POST user:password@127.0.0.1:5984/personas/_find -d '{"selector":{"direccion.ciudad": "Zapopan"},"fields":["nombre","apellido","edad"],"sort":[{"edad":"desc"}]}'`
+
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
+
+***3.3. Update Documents via curl***
+
+* Perform the following tasks using curl:
+
+    * Update existing documents in CouchDB.  
+        >This point was solved in the section 3.
+    * Handle document revisions and update conflicts.
+        >This point will be pending.
+
+**Task:**
+* Execute document updates using curl, including handling conflicts. Document the process and examples.
+
+| **TASK**    |       |
+| :---        |  ---: |
+---
+
+***Section 4: CouchDB Operations Using Python SDK***
+* Research how to interact with CouchDB using the Python SDK (e.g., couchdb library or another suitable SDK).
+* Learn how to:
+    * Install and set up the CouchDB Python SDK.
+    * Perform database operations such as creating, reading, and updating documents.
+
+***4.1. Mango Queries via Python SDK***
+
+Use the Python SDK to perform Mango queries in CouchDB. 
+
+Perform the following operations using Python SDK:
+
+Filter documents based on specific fields.
+
+Perform pagination using limit and skip.
+
+Task: Execute at least 3 different Mango queries using Python SDK and document the process.
+
+***4.2. Temporal View Request via Python SDK***
+
+Use the Python SDK to perform temporal view requests in CouchDB.
+
+Perform the following using Python SDK:
+
+Create and define a temporal view.
+
+Retrieve documents sorted by a time-based field.
+
+Task: Set up and query a temporal view using Python SDK and document the results.
+
+***4.3. Update Documents via Python SDK***
+
+Use the Python SDK to update existing documents in CouchDB.
+
+Handle document revisions and resolve update conflicts.
+
+Task: Execute document updates using Python SDK, including handling conflicts, and document the process.
+
+| **TASK**    | :white_check_mark: |
+| :---        |               ---: |
+---
