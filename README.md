@@ -200,19 +200,40 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 * Research how to interact with CouchDB using the Python SDK (e.g., couchdb library or another suitable SDK).
 * Learn how to:
     * Install and set up the CouchDB Python SDK.
+    ![pic](src/img/4-1.png)
     * Perform database operations such as creating, reading, and updating documents.
+        - Create document:
+        
+        ![pic](src/img/4-3.png)
+
+        - Reading document:
+
+        ![pic](src/img/4-4.png)
+
+         - Update document:
+
+        ![pic](src/img/4-5.png)
 
 ***4.1. Mango Queries via Python SDK***
 
-Use the Python SDK to perform Mango queries in CouchDB. 
+* Use the Python SDK to perform Mango queries in CouchDB. 
+    * We select all the documents where apellido is equal to "Rocha" 
+    ![pic](src/img/4-1-1.png)
+* Perform the following operations using Python SDK*:
 
-Perform the following operations using Python SDK:
+    * Filter documents based on specific fields.
+        * We select all documents ordered by "edad" asc:
 
-Filter documents based on specific fields.
+        ![pic](src/img/4-1-2.png)
+    * Perform pagination using limit and skip.
+        * We select all the documents with a limit of documents received and exclude 1 of the documents received
 
-Perform pagination using limit and skip.
+        ![pic](src/img/4-1-3.png)
 
-Task: Execute at least 3 different Mango queries using Python SDK and document the process.
+**Task:** 
+* Execute at least 3 different Mango queries using Python SDK and document the process.
+    
+    ![pic](src/img/4-1-4.png)
 
 ***4.2. Temporal View Request via Python SDK***
 
