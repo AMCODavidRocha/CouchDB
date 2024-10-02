@@ -232,28 +232,39 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 
 **Task:** 
 * Execute at least 3 different Mango queries using Python SDK and document the process.
-    
+    - In this consult we make 4 tipes or conditions: **Selector** with a **regex** that de city contains "pan", **fields:** that we want to see, **sort:** by "edad" previously created an index with this field and **limit:** just showing a number of documents.
     ![pic](src/img/4-1-4.png)
 
 ***4.2. Temporal View Request via Python SDK***
 
-Use the Python SDK to perform temporal view requests in CouchDB.
+* Use the Python SDK to perform temporal view requests in CouchDB.
 
-Perform the following using Python SDK:
+* Perform the following using Python SDK:
 
-Create and define a temporal view.
+    * Create and define a temporal view.
+        - For this point we create the view as the task section on point 3.2
 
-Retrieve documents sorted by a time-based field.
+    * Retrieve documents sorted by a time-based field.
+    ![pic](src/img/4-2-1.png)
 
-Task: Set up and query a temporal view using Python SDK and document the results.
+**Task:** 
+* Set up and query a temporal view using Python SDK and document the results.
+    - _disign: the name of the group of views
+    - _view: the name of the view
+    - map function:add the code that you need
+    ![pic](src/img/4-2-2.png)
 
 ***4.3. Update Documents via Python SDK***
 
-Use the Python SDK to update existing documents in CouchDB.
+* Use the Python SDK to update existing documents in CouchDB.
+    - We need to know the id from de the document that we need uptdate
+![pic](src/img/4-3-1.png)
 
-Handle document revisions and resolve update conflicts.
+* Handle document revisions and resolve update conflicts.
+    * This point will be pending...
 
-Task: Execute document updates using Python SDK, including handling conflicts, and document the process.
+**Task:**
+* Execute document updates using Python SDK, including handling conflicts, and document the process.
 
 | **TASK**    | :white_check_mark: |
 | :---        |               ---: |

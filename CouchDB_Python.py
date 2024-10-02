@@ -33,7 +33,7 @@ query = {
   },
   "fecha": "1989-01-10"
 }
-#db.save(query)
+db.save(query)
 
 #Para leer documentos los cuales sabemos el ID
 documento = db["fromPython1"]
@@ -96,17 +96,32 @@ r = db.find(mango_query3)
 for doc in r:
     print(f"Doc: {doc}")
 
+
+#VIstas desde SDK
+#Crear una vista, esta la podemos crear desde el Fauxton de Couchdb
+#en la seccion de map function agregamos este codigo
+#agregando el nombre del diseño y de la vista en sus inputs
+"""
+function (doc) {
+    emit(doc.nombre, doc.apellido);
+}
+"""
+
+#dentro de la funcin map en Fauxton agregamos el codigo:
+#esto para que orden por el campo edad y nos regrese todos los valores
+#que necesitemos.
+"""
+function (doc) { 
+  emit(doc.edad, { nombre: doc.nombre, apellido: doc.apellido, edad: doc.edad }); 
+}
 """
 #Mostrar una vista
-vista = db.view('datosPersonas/nombre-completo')
+vista = db.view('datosPersonas/edad-ordenada')
 for fila in vista:
     print(fila.key, fila.value)
-"""
-#doc_id, doc_rev = db.save(doc)
-#print(f"Document created with ID: {doc_id} and revision: {doc_rev}")
 
-#doc = db['fromPython']
-#print(doc)
-#doc['age'] = 31  # Update the age
-#db.save(doc)  # Save the updated document
-#print(f"Document with ID {doc_id} updated.")
+#modificar un documento sabiendo el id
+doc_id = 'fromPython5'
+doc = db[doc_id]
+doc['edad'] = 100
+db.save(doc)
