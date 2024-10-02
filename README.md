@@ -269,3 +269,26 @@ Research how to install CouchDB locally on your system (Windows, macOS, or Linux
 | **TASK**    | :white_check_mark: |
 | :---        |               ---: |
 ---
+
+***Section 5: Create Python Class for CouchDB Operations***
+* Design and implement a Python class to interact with CouchDB.
+* The class should be capable of:
+    * Connecting to CouchDB using the Python SDK.
+        `self.couch =  couchdb.Server(f'http://{self.user}:{self.pw}@127.0.0.1:5984/')`
+    * Running Mango queries and temporal view requests.
+        `r = self.db.find(mango_query)`
+        `r = self.db.view(vista)`
+
+**Task:** 
+* Implement a Python class with methods for:
+    * Connecting to CouchDB. Class and his call.
+    ![pic](src/img/5-1.png)
+    ![pic](src/img/5-1.png)
+
+    * Running Mango queries and temporal view requests.
+        - We made a class function with the functions of conection to  CouchDB, selection of the DB and two querys, one with mango and the other using a view created at Fauxton 
+
+        ![pic](src/img/5-3.png)
+
+***Include class in your training repo DAN-1567: Implement Python Class for MySQL Database Connection and Project SetupDone***
+***Document the implementation and test the class with a CouchDB instance.***
